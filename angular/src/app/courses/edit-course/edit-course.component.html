@@ -1,0 +1,52 @@
+
+
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="card-body bg-white">
+        <h5 class="fww">Edit Course</h5>
+        <form (ngSubmit)="updateCourseon()">
+         <div class="row">
+            
+          <div class="col-md-6">
+            <!-- {{course|json}} -->
+              <label class="col-form-label">
+                Course Name
+              </label>
+              <br>
+              <input type="text"  class="form-control"   [(ngModel)]="course.courseName"  name="fullName"  />
+           
+          </div>
+          <div class="col-md-6" >
+            
+              <label class="col-form-label">
+                Course Code
+              </label>
+              <br>
+                 <input type="text" class="form-control" [(ngModel)]="course.courseCode"   name="firstName"  />
+            
+          </div>
+          
+          <div class="col-md-6" style="margin-top: 12px;">
+            
+              <label class="col-form-label">
+                Course Description
+              </label>
+              <br>
+              <input type="text" class="form-control" [(ngModel)]="course.courseDescription"  name="surName" />
+            
+          </div>
+       
+          <div class="col-md-6 mt-5" style="margin-top: 12px;">
+            <div class="input-group mts">
+                <!-- <a href="javascript:;" routerLink="/app/students" class="btn btn-success" >Submit</a> -->
+                <button  class="btn btn-success">Save</button>
+              </div>
+          </div>
+        
+         </div>
+       </form>
+      </div>
+    </div>
+  </section>
+  
+

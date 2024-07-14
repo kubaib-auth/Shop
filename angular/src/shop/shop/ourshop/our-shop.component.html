@@ -1,0 +1,91 @@
+
+
+
+<!-- Navbar Start -->
+<div class="container-fluid mb-5">
+    <div class="row border-bottom border-top px-xl-5">
+         <div class="col-lg-3 d-none d-lg-block" >
+            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primarysa text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <h6 class="m-0">Categories</h6>
+                <i class="fa fa-angle-down text-dark"></i>
+            </a>
+          
+             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical" >
+               
+                <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                    <a style="cursor: pointer" *ngFor="let category of categoryProduct" (click)="CategoryDetail(category.categoryId)" class="nav-item nav-link ">{{category.categoryName}}</a>
+                </div>
+            </nav> 
+        
+        </div> 
+        
+        <div class="col-lg-9" > 
+            <div class="container-fluid pt-5" *ngIf="isShopA">
+                <div class="text-center mb-4">
+                    <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
+                </div>
+                <div class="row px-xl-5 pb-3">
+                    <div *ngFor="let product of ourshop" class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="assets/img/product-1.jpg" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">{{product.productName}}</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>{{product.productPrice}}</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <a routerLink="/shop/productdetail/{{product.id}}"  class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+            
+                                <!-- <a routerLink="/shop/productdetail/{{product.id}}"  (click)="detail(product.id)" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a> -->
+                                <!-- <a [routerLink]="'/shop/productdetail/' + product.id" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                    
+                                  </a> -->
+                                <a href="#" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+
+            <div class="container-fluid pt-5" *ngIf="!isShopA && isCategoryA">
+                <div class="text-center mb-4">
+                    <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
+                </div>
+                
+               
+                <div class="row px-xl-5 pb-3">
+                    <div *ngFor="let item of productCat" class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="assets/img/product-1.jpg" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">{{item.productName}}</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>{{item.discountPrice | currency:'PKR ':'symbol':'3.2-2':'en' }}</h6><h6 class="text-muted ml-2"><del> {{item.productPrice | currency:'PKR ':'symbol':'3.2-2':'en' }}</del></h6>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <a routerLink="/shop/productdetail/{{item.id}}"  class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+            
+                                <!-- <a routerLink="/shop/productdetail/{{product.id}}"  (click)="detail(product.id)" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a> -->
+                                <!-- <a [routerLink]="'/shop/productdetail/' + product.id" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                    
+                                  </a> -->
+                                <a href="#" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Navbar End -->

@@ -1,0 +1,541 @@
+<!-- Checkout Start -->
+<div class="container-fluid pt-5" *ngIf="placeOrder">
+    <form  (ngSubmit)="onSubmit()" #myForm="ngForm" autocomplete="off">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>First Name</label>
+                        <input 
+                         class="form-control" 
+                         type="text"
+                         [(ngModel)]="order.orderProductName" #nameModel="ngModel" #nameEl
+                         placeholder="John"
+                         name="orderProductName"
+                         id="orderProductName" required                       
+                         >
+                    </div>
+                    
+                    <div class="col-md-6 form-group">
+                        <label>E-mail</label>
+                        <input class="form-control"                       
+                         type="text" placeholder="example@email.com"
+                         [(ngModel)]="order.email" #nameModel="ngModel" #nameEl
+                         name="email"
+                         id="email"
+                         >
+                    </div>
+                    <input hidden type="number"
+                    [(ngModel)]="user"
+                    #nameModel="ngModel" #nameEl 
+                    name="user"
+                    id="user">
+                    <div class="col-md-6 form-group">
+                        <label>Mobile No</label>
+                        <input class="form-control"
+                        type="number" 
+                        [(ngModel)]="order.orderProductPhone"
+                        #nameModel="ngModel" #nameEl 
+                        name="orderProductPhone"
+                        id="orderProductPhone"
+                        placeholder="+123 456 789">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="icon">Order Date</label>
+                        <br>
+                        <p-calendar class="P-fluid"
+                         [(ngModel)]="order.orderDate" 
+                         [showIcon]="true" 
+                         id="orderDate"
+                         name="orderDate" 
+                         inputId="icon"
+                         #nameModel="ngModel" #nameEl 
+                         ></p-calendar>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Address </label>
+                        <input
+                        [(ngModel)]="order.orderProductAddress" #nameModel="ngModel" #nameEl 
+                        name="orderProductAddress"
+                        id="orderProductAddress"
+                         class="form-control" type="text" placeholder="123 Street">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Country</label>
+                        <select class="custom-select">
+                            <option selected>United States</option>
+                            <option>Afghanistan</option>
+                            <option>Albania</option>
+                            <option>Algeria</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>City</label>
+                        <input 
+                         class="form-control"
+                         type="text" 
+                         [(ngModel)]="order.city"
+                         #nameModel="ngModel" #nameEl 
+                         name="orderProductPhone"
+                         id="orderProductPhone"
+                         placeholder="New York">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>State</label>
+                        <input class="form-control" type="text" placeholder="New York"
+                        [(ngModel)]="order.state"
+                        #nameModel="ngModel" #nameEl 
+                        name="state"
+                        id="state"
+                        
+                        >
+                    </div>
+                   
+                    <!-- <div class="col-md-12 form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="newaccount">
+                            <label class="custom-control-label" for="newaccount">Create an account</label>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12 form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="shipto">
+                            <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse mb-4" id="shipping-address">
+                <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
+                <div class="row">
+                     <div class="col-md-6 form-group">
+                        <label>First Name</label>
+                        <input class="form-control" type="text" placeholder="John"
+                        [(ngModel)]="order.orderShipmentName"
+                        #nameModel="ngModel" #nameEl 
+                        name="orderShipmentName"
+                        id="orderShipmentName"
+                        >
+                    </div> 
+                
+                    <div class="col-md-6 form-group">
+                        <label>Mobile No</label>
+                        <input class="form-control" type="text" placeholder="+123 456 789"
+                        [(ngModel)]="order.orderShipmentPhone"
+                        #nameModel="ngModel" #nameEl 
+                        name="orderShipmentPhone"
+                        id="orderShipmentPhone"
+                        >
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Address Line 1</label>
+                        <input 
+                        class="form-control" type="text" 
+                        [(ngModel)]="order.orderProductShipmentAddress" #nameModel="ngModel" #nameEl 
+                         name="orderProductShipmentAddress"
+                         id="orderProductShipmentAddress"
+                         placeholder="123 Street">
+                    </div>
+                    <!-- <div class="col-md-6 form-group">
+                        <label>Address Line 2</label>
+                        <input class="form-control" type="text" placeholder="123 Street">
+                    </div> -->
+                    <div class="col-md-6 form-group">
+                        <label>Country</label>
+                        <select class="custom-select">
+                            <option selected>United States</option>
+                            <option>Afghanistan</option>
+                            <option>Albania</option>
+                            <option>Algeria</option>
+                        </select>
+                    </div>
+                     <div class="col-md-6 form-group">
+                        <label>City</label>
+                        <input class="form-control" type="text" placeholder="New York"
+                        [(ngModel)]="order.shipmentCity"
+                        #nameModel="ngModel" #nameEl 
+                        name="shipmentCity"
+                        id="shipmentCity"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="font-weight-medium mb-3">Products</h5>
+                    <div class="d-flex justify-content-between" *ngFor="let item of cartItems">
+                        <p>{{item.productName}}</p>
+                        <p>{{item.productPrice * item.quantity}}</p>
+                    </div>
+                   
+                    
+                    <hr class="mt-0">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Subtotal</h6>
+                        <h6 class="font-weight-medium">$150</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div>
+                </div>
+              
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Total</h5>
+                        <h5 class="font-weight-bold">{{ totalAmount   | currency:'PKR':'symbol':'3.2-2':'en'  }}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                            <label class="custom-control-label" for="paypal">Paypal</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                            <label class="custom-control-label" for="directcheck">Direct Check</label>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                            <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                        <button type="submit" [disabled]="!myForm.valid" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<!-- Checkout End -->
+<div class="container" *ngIf="placeOrder">
+    <div class="row">
+        <div class="col-lg-4 mb-lg-0 mb-3">
+            <div class="card p-3">
+                <div class="img-box">
+                    <img src="https://www.freepnglogos.com/uploads/visa-logo-download-png-21.png" alt="">
+                </div>
+                <div class="number">
+                    <label class="fw-bold" for="">**** **** **** 1060</label>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
+                    <small><span class="fw-bold">Name:</span><span>Kumar</span></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-lg-0 mb-3">
+            <div class="card p-3">
+                <div class="img-box">
+                    <img src="https://www.freepnglogos.com/uploads/mastercard-png/file-mastercard-logo-svg-wikimedia-commons-4.png"
+                        alt="">
+                </div>
+                <div class="number">
+                    <label class="fw-bold">**** **** **** 1060</label>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
+                    <small><span class="fw-bold">Name:</span><span>Kumar</span></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-lg-0 mb-3">
+            <div class="card p-3">
+                <div class="img-box">
+                    <img src="https://www.freepnglogos.com/uploads/discover-png-logo/credit-cards-discover-png-logo-4.png"
+                        alt="">
+                </div>
+                <div class="number">
+                    <label class="fw-bold">**** **** **** 1060</label>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <small><span class="fw-bold">Expiry date:</span><span>10/16</span></small>
+                    <small><span class="fw-bold">Name:</span><span>Kumar</span></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-4">
+            <div class="card p-3">
+                <p class="mb-0 fw-bold h4">Payment Methods</p>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card p-3">
+                <div class="card-body border p-0">
+                    <p>
+                        <a class="btn btn-primary w-100 h-100 d-flex align-items-center justify-content-between"
+                            data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                            aria-controls="collapseExample">
+                            <span class="fw-bold">PayPal</span>
+                            <span class="fab fa-cc-paypal">
+                            </span>
+                        </a>
+                    </p>
+                    <div class="collapse p-3 pt-0" id="collapseExample">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="h4 mb-0">Summary</p>
+                                <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green">: Name of
+                                        product</span></p>
+                                <p class="mb-0"><span class="fw-bold">Price:</span><span
+                                        class="c-green">:$452.90</span></p>
+                                <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
+                                    nihil neque
+                                    quisquam aut
+                                    repellendus, dicta vero? Animi dicta cupiditate, facilis provident quibusdam ab
+                                    quis,
+                                    iste harum ipsum hic, nemo qui!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body border p-0">
+                    <p>
+                        <a class="btn btn-primary p-2 w-100 h-100 d-flex align-items-center justify-content-between"
+                            data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                            aria-controls="collapseExample">
+                            <span class="fw-bold">Credit Card</span>
+                            <span class="">
+                                <span class="fab fa-cc-amex"></span>
+                                <span class="fab fa-cc-mastercard"></span>
+                                <span class="fab fa-cc-discover"></span>
+                            </span>
+                        </a>
+                    </p>
+                    <div class="collapse show p-3 pt-0" id="collapseExample">
+                        <div class="row">
+                            <div class="col-lg-5 mb-lg-0 mb-3">
+                                <p class="h4 mb-0">Summary</p>
+                                <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green">: Name of
+                                        product</span>
+                                </p>
+                                <p class="mb-0">
+                                    <span class="fw-bold">Price:</span>
+                                    <span class="c-green">:$452.90</span>
+                                </p>
+                                <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
+                                    nihil neque
+                                    quisquam aut
+                                    repellendus, dicta vero? Animi dicta cupiditate, facilis provident quibusdam ab
+                                    quis,
+                                    iste harum ipsum hic, nemo qui!</p>
+                            </div>
+                            <div class="col-lg-7">
+                                <form action="" class="form">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form__div">
+                                                <input type="text" class="form-control" placeholder=" ">
+                                                <label for="" class="form__label">Card Number</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form__div">
+                                                <input type="text" class="form-control" placeholder=" ">
+                                                <label for="" class="form__label">MM / yy</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form__div">
+                                                <input type="password" class="form-control" placeholder=" ">
+                                                <label for="" class="form__label">cvv code</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form__div">
+                                                <input type="text" class="form-control" placeholder=" ">
+                                                <label for="" class="form__label">name on the card</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="btn btn-primary w-100">Sumbit</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="btn btn-primary payment">
+                Make Payment
+            </div>
+        </div>
+    </div>
+</div>
+{{productorderSlip | json}}
+<div class="container" *ngIf="!placeOrder">
+    <div class="row">
+        <div class=" cud" id="invoice" #invoice style="padding: 20px;" size="A4" *ngFor="let orderSlip of productorderSlip">
+            <table style="width: 100%;" >
+                <thead>
+                    <tr>
+                        <td class="DSD">Alentics Garments</td>
+                    </tr>
+                    <tr>
+                        <td class="DSD">info@hardtialLeader.com, 222 555 4343 22233</td>
+    
+                    </tr>
+                    <tr>
+                        <td class="hefs">Delivery Order</td>                    
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fontwe">Order Number : </span> {{orderSlip.orderNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fontwe">Requested By : </span>{{orderSlip.userName}}</td>
+    
+                    </tr>
+                    <tr>
+                        <td><span class="fontwe">Address : </span>{{orderSlip.orderProductAddress}} </td>
+    
+                    </tr>
+                    <tr>
+                        <td><span class="fontwe">Email : </span>{{orderSlip.email}}</td>
+    
+                    </tr>
+                    <tr>
+                        <td><span class="fontwe"> Date : </span>{{orderSlip.orderDate | date}}</td>
+    
+                    </tr>
+                </tbody>
+                  
+                   
+               </table>
+               <table style="width: 100%; padding-top: 20px;margin-top: 50px;" >
+                <thead>
+                    <tr class="border-bottom-color">
+                        <th class="asa">Product Name</th>
+                        <th class="asa">Quantity</th>
+                        <th class="asa">Price</th>
+                        <th class="asa">Total</th>
+                    </tr>
+                    <tr class="border-bottom" *ngFor="let item of orderSlip.orderDetailSlip">
+                       <td class="dsf">
+                            {{item.productName}} 
+                       </td>
+                       <td class="dsf">
+                         {{item.quantity}} 
+                       </td>
+                       <td class="dsf">
+                            {{item.productPrice}}
+                       </td>
+                       <td class="dsf">
+                            {{item.productAmount}}
+                       </td>
+    
+                    </tr>
+                    <!-- <tr class="border-bottom">
+                        <td class="dsf">
+                             White
+                        </td>
+                        <td class="dsf">
+                             2
+                        </td>
+                        <td class="dsf">
+                             1200
+                        </td>
+                        <td class="dsf">
+                             2400
+                        </td>
+     
+                     </tr>
+                     <tr class="border-bottom">
+                        <td class="dsf">
+                             Black
+                        </td>
+                        <td class="dsf">
+                             1
+                        </td>
+                        <td class="dsf">
+                             1200
+                        </td>
+                        <td class="dsf">
+                             1200
+                        </td>
+     
+                     </tr>
+                     <tr class="border-bottom">
+                        <td class="dsf">
+                             Blue
+                        </td>
+                        <td class="dsf">
+                             2
+                        </td>
+                        <td class="dsf">
+                             1200
+                        </td>
+                        <td class="dsf">
+                             2400
+                        </td>
+     
+                     </tr>
+                     <tr>
+                        <td class="dsf">
+                            Total
+                       </td>
+                       <td class="dsf">
+                            
+                       </td>
+                       <td class="dsf">
+                            
+                       </td>
+                       <td class="dsf">
+                            6200
+                       </td>
+                     </tr>
+                     <tr >
+                        <td class="dcxc" colspan="4" >Terms And Condition</td>
+                     </tr> -->
+                     <tr>
+                        <td colspan="4">
+                            <ol>
+                                <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry</li>
+                                <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry</li>
+                               
+                              </ol>  
+                        </td>
+                                           
+                    </tr>
+                </thead>
+               </table>
+               
+        </div>
+        <div class="buttoncustom"  style="padding: 20px;" size="A4">
+            <button class="btn btn-success float-end" (click)="generatePDF()">Download as PDF</button>
+        </div>
+          
+    </div>
+    
+</div>
+

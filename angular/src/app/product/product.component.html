@@ -1,0 +1,137 @@
+
+<div [@routerTransition]>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <h1>{{ "Product" | localize }}</h1>
+                </div>
+                <div class="col-6 text-right">
+                    <!-- (click)="createTenant()" -->
+                    <a href="javascript:;" class="btn bg-blue" (click)="createOrEditProduct()">
+                        <i class="fa fa-plus-square"></i>
+                        {{ "Create" | localize }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-5">
+                <div class="col-sm-6 pt-4">
+                    <div class="my-3">
+                        <div class="input-group mb-3">
+                            <input 
+                            [(ngModel)]="filterText" 
+                            (ngModelChange)="getProductAll()" 
+                            name="filterText"
+                                autoFocus
+                                 type="text"
+                                  class="form-control"
+                                   [placeholder]="l('SearchWithThreeDot')" 
+                                   />
+                            <button class="btn btn-primary" type="submit" (click)="getProductAll()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="form-label">Client</label>
+                                    
+                    <p-dropdown                                      
+                    [options]="categoryOptions"
+                    [(ngModel)]="categoryFiterId"
+                    [ngModelOptions]="{standalone: true}"
+                    optionValue="id"
+                    optionLabel="categoryName"
+                    placeholder="Select Client"
+                    (ngModelChange)="getProductAll()"
+                    [showClear]="true"
+                    class="p-fluid"
+                    [filter]="true"
+                    filterBy="categoryName"
+                    ></p-dropdown>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+<p-table 
+[value]="productList" 
+[tableStyle]="{'min-width': '60rem'}"
+[responsive]="true" 
+selectionMode="single"
+dataKey="name"
+[paginator]="true"
+[rows]="5" 
+sortMode="single" 
+[pageLinks]="5"
+[rowsPerPageOptions]="[5,10,15,20,25]"
+[totalRecords]="[19]"
+>
+    <ng-template pTemplate="header">
+        <tr>  
+                     
+            <th [style]="{'font-size':'12px'}">{{"ProductName" | localize}}</th>
+            <th [style]="{'font-size':'12px'}">{{"Category" | localize}}</th>
+            <th [style]="{'font-size':'12px'}">{{"Price" | localize}}</th>
+            <th [style]="{'font-size':'12px'}">{{"Description" | localize}}</th>
+            <th [style]="{'font-size':'12px'}">{{"Detail" | localize}}</th>
+            <th [style]="{'font-size':'12px'}">{{"Trand" | localize}}</th>
+            <th [style]="{'font-size':'12px'}">{{"Image" | localize}}</th>
+            <th [style]="{'font-size':'12px'}">{{"Action" | localize}}</th>          
+        </tr>
+       
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+           
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{item.product.productName}}</td>
+            <td hidden [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{item.categoryId}}</td> 
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{item.categoryName}}</td> 
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{item.product.productPrice | currency:'PKR':'symbol':'3.2-2':'en'}}</td>
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{item.product.description}}</td>
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{item.product.fullDescription}}</td> 
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">
+                <div class="custom-control custom-checkbox">
+                    <input
+                           type="checkbox"
+                           class="custom-control-input"
+                           disabled
+                           [checked]="item.product.isFeatured"
+                   />
+                   <label class="custom-control-label"></label> 
+               </div>
+                <!-- {{item.isFeatured}} -->
+            </td>
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{item.product.image}}</td>
+           
+            <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">
+                <button
+                type="button"
+                class="btn btn-sm bg-secondary"
+                (click)="createOrEditProduct(item.product.id)"
+                 >
+                 <i class="fas fa-pencil-alt"></i>                   
+                </button>
+                <button
+                   type="button"
+                    class="btn btn-sm bg-danger mx-2"  
+                    (click)="deleteCategory(item)"                                       
+                  >      
+                  <i class="fas fa-trash"></i>                   
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="showDetails">
+            <td colspan="9"></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+            </div>
+        </div>
+        </div>
+    </section>
+</div>

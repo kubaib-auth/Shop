@@ -1,0 +1,59 @@
+
+
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="card-body bg-white">
+        <h5 class="fww">Add Book</h5>
+        <form #bookForm="ngForm" (ngSubmit)="SubmitFormData(bookForm.value)"  >
+         <div class="row">
+         
+          <div class="col-md-6">           
+              <label class="col-form-label">
+               Book Name
+              </label>
+              <br>
+              <input 
+                type="text" 
+                class="form-control"
+                [(ngModel)]="book.bookName" 
+                name="bookName" 
+                id="bookName"               
+               
+                />          
+          </div>
+          <div class="col-md-6" >
+              <label class="col-form-label">
+                Author Name
+              </label>
+              <br>
+                 <input type="text" class="form-control"
+                  [(ngModel)]="book.authorName"
+                   name="authorName" 
+                   id="authorName" />  
+          </div>
+          <div class="col-md-6" style="margin-top: 12px;">
+              <label class="col-form-label">
+              
+                Publish Year
+              </label>
+              <br>
+              <input type="text" class="form-control"
+                [(ngModel)]="book.publishYear" 
+                name="publishYear"
+                id="publishYear"  />  
+          </div>
+          <br>
+
+          <div class="col-md-6 mt-5" style="margin-top: 12px;">
+            <div class="input-group mts">
+                <button class="btn btn-success">Save</button>
+              </div>
+          </div>
+        
+         </div>
+       </form>
+      </div>
+    </div>
+  </section>
+  
+

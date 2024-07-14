@@ -1,0 +1,55 @@
+<section class="content-header">
+    <div class="container-fluid border widthd">
+      <div class="row py-2 bg-white">
+        <div class="col-6">
+          <h1>Course</h1>
+        </div>
+        <div class="col-6 text-right">
+          <a routerLink="/app/create-course" href="javascript:;" class="btn bg-blue"><i
+              class="fa fa-plus-square"></i>Create</a>
+  
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="card-body bg-white">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Course Name</th>
+                <th class="text-center">Course Code</th>
+                <th class="text-center"> Course Description</th>
+                
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of CourseList">
+                <td class="text-center">{{item.courseName}}</td>
+                <td class="text-center">{{item.courseCode}}</td>
+                <td class="text-center">{{item.courseDescription}}</td>
+                
+                <td class="text-center">
+                    <!-- routerLink="/app/edit/{{item.id}}" -->
+                  <button routerLink="/app/edit-course/{{item.id}}"  class="btn btn-sm bg-secondary">
+  
+                    <i class="fas fa-pencil-alt"></i> Edit
+  
+                  </button>
+                    
+                  <button type="button" (click)='CoursesDelete(item.id)' class="btn btn-sm bg-danger mx-2">
+                    <i class="fas fa-trash"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>

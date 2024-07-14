@@ -1,0 +1,59 @@
+
+
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="card-body bg-white">
+        <h3 class="fww">Edit Student</h3>
+        <form (ngSubmit)="updateStudenton()">
+         <div class="row">
+            
+          <div class="col-md-6">
+            <!-- {{student|json}} -->
+              <label class="col-form-label">
+                FullName
+              </label>
+              <br>
+              <input type="text"  class="form-control"   [(ngModel)]="student.fullName"  name="fullName"  />
+           
+          </div>
+          <div class="col-md-6" >
+            
+              <label class="col-form-label">
+                FirstName
+              </label>
+              <br>
+                 <input type="text" class="form-control" [(ngModel)]="student.firstName"   name="firstName"  />
+            
+          </div>
+          
+          <div class="col-md-6" style="margin-top: 12px;">
+            
+              <label class="col-form-label">
+                SurName
+              </label>
+              <br>
+              <input type="text" class="form-control" [(ngModel)]="student.surName"  name="surName" />
+            
+          </div>
+          <div class="col-md-6" style="margin-top: 12px;">
+            
+              <label class="col-form-label">
+                RollNo
+              </label>
+              <br>
+                 <input type="text" class="form-control" [(ngModel)]="student.rollNo"  name="rollNo" />
+            
+          </div>
+          <div class="col-md-6" style="margin-top: 12px;">
+            <div class="input-group">
+                <!-- <a href="javascript:;" routerLink="/app/students" class="btn btn-success" >Submit</a> -->
+                <button class="btn btn-success">Save</button>
+              </div>
+          </div>
+        
+         </div>
+       </form>
+      </div>
+    </div>
+  </section>
+  
