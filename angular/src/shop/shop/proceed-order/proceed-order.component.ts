@@ -25,6 +25,9 @@ export class ProceedOrderComponent extends AppComponentBase implements OnInit {
   user: any;
   order: OrderDto = new OrderDto();
   placeOrder:boolean=false;
+  paymentOrder:boolean=false;
+  procedOrder:boolean=true;
+
   placeOrdessr:boolean;
   @ViewChild('pdfContent') pdfContent!: ElementRef;
   
@@ -74,7 +77,12 @@ export class ProceedOrderComponent extends AppComponentBase implements OnInit {
         this.totalAmount,  
         this.order).subscribe((result) => {
           this.placeOrder=true; 
+          this.procedOrder=false;
         });                  
+  }
+  ordersubmit(){
+    this.procedOrder=true;
+   this.paymentOrder=true;
   }
   downloadPDF() {
     const options = {

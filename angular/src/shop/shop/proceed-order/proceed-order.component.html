@@ -1,5 +1,5 @@
 <!-- Checkout Start -->
-<div class="container-fluid pt-5" *ngIf="placeOrder">
+<div class="container-fluid pt-5" *ngIf="!placeOrder">
     <form  (ngSubmit)="onSubmit()" #myForm="ngForm" autocomplete="off">
     <div class="row px-xl-5">
         <div class="col-lg-8">
@@ -231,7 +231,7 @@
 </form>
 </div>
 <!-- Checkout End -->
-<div class="container" *ngIf="placeOrder">
+<div class="container" *ngIf="!procedOrder">
     <div class="row">
         <div class="col-lg-4 mb-lg-0 mb-3">
             <div class="card p-3">
@@ -373,7 +373,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <div class="btn btn-primary w-100">Sumbit</div>
+                                            <div (click)="ordersubmit()" class="btn btn-primary w-100">Sumbit</div>
                                         </div>
                                     </div>
                                 </form>
@@ -390,8 +390,8 @@
         </div>
     </div>
 </div>
-{{productorderSlip | json}}
-<div class="container" *ngIf="!placeOrder">
+<!-- {{productorderSlip | json}} -->
+<div class="container" *ngIf="paymentOrder">
     <div class="row">
         <div class=" cud" id="invoice" #invoice style="padding: 20px;" size="A4" *ngFor="let orderSlip of productorderSlip">
             <table style="width: 100%;" >
