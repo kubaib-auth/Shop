@@ -7028,7 +7028,7 @@ export class Product implements IProduct {
     productPrice: number | undefined;
     description: string | undefined;
     fullDescription: string | undefined;
-    image: string;
+    image: string | undefined;
     isFeatured: boolean | undefined;
     categoryId: number | undefined;
     categoryFk: Category;
@@ -7108,7 +7108,7 @@ export interface IProduct {
     productPrice: number | undefined;
     description: string | undefined;
     fullDescription: string | undefined;
-    image: string;
+    image: string | undefined;
     isFeatured: boolean | undefined;
     categoryId: number | undefined;
     categoryFk: Category;

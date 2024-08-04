@@ -15,7 +15,7 @@ namespace LessWebStore.Products
         public decimal? ProductPrice { get; set; }
         public string Description { get; set; }       
         public string FullDescription { get; set; }
-        public Guid Image { get; set; }
+        public byte[] Image { get; set; }
         public bool? IsFeatured { get; set; }
         public int? CategoryId { get; set; }
         [ForeignKey("CategoryId")]

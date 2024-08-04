@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Injector, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
 import { CategoryAppServicesServiceProxy, CategoryDto, GetCategoryForViewDto } from '@shared/service-proxies/service-proxies';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -26,11 +26,10 @@ export class CategoryComponent extends AppComponentBase implements OnInit {
   skipCount:number;
   maxResultCount:number;
   //categoryList=[];
-  categoryList: any[] = [];
+  categoryList: GetCategoryForViewDto[] = [];
   id?: number;
   //category: CategoryDto =   new  CategoryDto();
   category: GetCategoryForViewDto =   new  GetCategoryForViewDto();
-  @Output() onSave = new EventEmitter<any>();
   @ViewChild('dataTable',{static:true}) dataTable:Table;
   @ViewChild('paginator',{static:true}) paginator:Paginator;
   saving = false;
@@ -47,8 +46,18 @@ export class CategoryComponent extends AppComponentBase implements OnInit {
     this.getCategoryAll()
   //  this.list();
   }
+  byteStringToBlobUrl(byteString: string): string {
+    const binaryString = atob(byteString);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const blob = new Blob([bytes], { type: 'image/png' });
+    return URL.createObjectURL(blob);
+  }
   createOrEditProduct(id?: number): void {
-    debugger
+     
     const createOrEditProductDialog: BsModalRef = this._modalService.show(
       CreateOrEditCategoryModelComponent,
       {
@@ -57,25 +66,44 @@ export class CategoryComponent extends AppComponentBase implements OnInit {
           id: id || null,
         },
       }
+      
     );
-    createOrEditProductDialog.content.onSave.subscribe((result) => {
-    //  this.list(); 
-    this.getCategoryAll()
+    this.getCategoryAll(); 
+    // createOrEditProductDialog.content.onSave.subscribe((result) => {
+    //   console.log('onSave event received:', result);
+    //   if (result) {
+    //     // Refresh the category list
+    //   }
+    // });
+  }
+ 
+  
+  getCategoryAll(event?: LazyLoadEvent) {
+    debugger;
+    this._category.getAll(
+      this.filterText,
+      this.namefilter,
+      this.sorting,
+      this.skipCount,
+      this.maxResultCount
+    ).subscribe((result) => {
+      this.categoryList = result.items
     });
   }
-getCategoryAll(event?: LazyLoadEvent){
   
-  debugger
- this._category.getAll(
-  this.filterText,
-  this.namefilter,
-  this.sorting,
-  this.skipCount,
-  this.maxResultCount
-  ).subscribe((result)=>{
-  this.categoryList = result.items;   
- });
-}
+  byteArrayStringToBase64(byteArrayString: string): string {
+    // Convert byte array string to Uint8Array
+    const byteArray = Uint8Array.from(atob(byteArrayString), c => c.charCodeAt(0));
+    
+    // Convert Uint8Array to binary string
+    let binaryString = '';
+    byteArray.forEach(byte => binaryString += String.fromCharCode(byte));
+    
+    // Convert binary string to base64 string
+    return 'data:image/png;base64,' + window.btoa(binaryString);
+  }
+  
+
   // list(){ 
   //   this._category.getAll().subscribe((result) => {
   //       this.categoryList = result;    

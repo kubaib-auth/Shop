@@ -26,7 +26,25 @@
            #nameModel="ngModel"
           #nameEl
         />
-        
+        <div class="col-sm-6">
+          <div class="form-group mr-2 row required">
+              <label class="form-label" for="image">
+                  {{ "Image" | localize }}
+              </label>
+              
+              <!-- Hidden file input -->
+              <input type="file" class="form-control" name="image" id="image" (change)="onFileSelected($event)" hidden #fileInput />
+      
+              <!-- Preview and custom upload button -->
+              <div class="image-preview" (click)="fileInput.click()">
+                  <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" class="img-thumbnail"/>
+                  <button *ngIf="!imagePreview" type="button" class="btn btn-primary">Upload Image</button>
+              </div>
+      
+              <abp-validation-summary [control]="fileInput" [controlEl]="fileInput"></abp-validation-summary>
+          </div>
+      </div>
+      
         <abp-validation-summary
           [control]="nameModel"
           [controlEl]="nameEl"

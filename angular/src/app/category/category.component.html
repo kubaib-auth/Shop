@@ -33,20 +33,13 @@
                 </div>
                 <div class="col-sm-12">
                     <p-table [value]="categoryList" (onLazyLoad)="getCategoryAll()"
-                       
-                        [tableStyle]="{'min-width': '60rem'}"
-[responsive]="true" 
-selectionMode="single"
-dataKey="name"
-[paginator]="true"
-[rows]="5" 
-sortMode="single" 
-[pageLinks]="5"
-[rowsPerPageOptions]="[5,10,15,20,25]"
-[totalRecords]="[19]">
+                        [tableStyle]="{'min-width': '60rem'}" [responsive]="true" selectionMode="single" dataKey="name"
+                        [paginator]="true" [rows]="5" sortMode="single" [pageLinks]="5"
+                        [rowsPerPageOptions]="[5,10,15,20,25]" [totalRecords]="[19]">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th [style]="{'font-size':'12px'}">Name</th>
+                                <th [style]="{'font-size':'12px'}">Image</th>
                                 <!-- <th>Age</th>
             <th>Phone</th>
             <th>Quantity</th> -->
@@ -55,7 +48,13 @@ sortMode="single"
                         </ng-template>
                         <ng-template pTemplate="body" let-category>
                             <tr>
-                                <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">{{category.category.categoryName }}</td>
+                                <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">
+                                    {{category.category.categoryName }}</td>
+                                    <td [style]="{'font-size':'10px','padding': '0.5rem 1rem','font-weight':'600'}">
+                                        <img [src]="category.category.image" alt="Image Preview" style="max-width: 100px; max-height: 100px;" />
+                                    </td>
+                                    
+                                    
                                 <!-- <td>{{item.Age}}</td>
             <td>{{item.Phone}}</td>
             <td>{{item.Quantity}}</td> -->

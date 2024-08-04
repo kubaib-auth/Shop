@@ -43,6 +43,7 @@ namespace LessWebStore.Categorys
                              {
                                  o.CategoryName,                                
                                  o.Id,
+                                 o.Image
                              };
             var totalCount = filteredCategorys.Count();
             var dbList = await caategorys.ToListAsync();
@@ -56,6 +57,8 @@ namespace LessWebStore.Categorys
                     {
                         CategoryName = o.CategoryName,                     
                         Id = o.Id,
+                        Image = o.Image
+
                     },                   
                 };
                 results.Add(res);
@@ -66,12 +69,14 @@ namespace LessWebStore.Categorys
             );
         }
         public async Task Create(CategoryDto model)
-        {
+        { 
             try
             {
                 var productCategory = new Category()
                 {
                     CategoryName = model.CategoryName,
+                    Image = model.Image
+
                 };
                 await _categoryRepository.InsertAsync(productCategory);
 
@@ -81,10 +86,21 @@ namespace LessWebStore.Categorys
                 throw ex;
             }
         }
+        //public byte[] ConvertBase64ToByte(string base64String)
+        //{
+        //    if (string.IsNullOrEmpty(base64String))
+        //    {
+        //        return null;
+        //    } 
+        //    var base64Data = base64String.Split(',')[1];
+        //    return Convert.FromBase64String(base64Data);
+        //}
+
         public async Task Update(CategoryDto model)
         {
             var editcategory = await _categoryRepository.FirstOrDefaultAsync(a => a.Id == model.Id);
             editcategory.CategoryName = model.CategoryName;
+            editcategory.Image = model.Image;
            
             await _categoryRepository.UpdateAsync(editcategory);
         }
