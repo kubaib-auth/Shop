@@ -86,15 +86,7 @@ namespace LessWebStore.Categorys
                 throw ex;
             }
         }
-        //public byte[] ConvertBase64ToByte(string base64String)
-        //{
-        //    if (string.IsNullOrEmpty(base64String))
-        //    {
-        //        return null;
-        //    } 
-        //    var base64Data = base64String.Split(',')[1];
-        //    return Convert.FromBase64String(base64Data);
-        //}
+       
 
         public async Task Update(CategoryDto model)
         {
